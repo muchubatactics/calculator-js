@@ -5,8 +5,7 @@
 
 //global variables
 
-let num1, num2, result;
-let operator;
+let num1 = undefined, num2 = undefined, result = undefined, count = undefined, operator = undefined, tempString = '', displayString = '';
 
 //functions
 
@@ -27,6 +26,7 @@ function multiply(x, y)
 
 function divide(x, y)
 {
+    if (y == 0) return 0;
     return x / y;
 }
 
@@ -53,88 +53,133 @@ let display = document.querySelector(".display");
 let digitButtons = Array.from(document.querySelectorAll(".digit-buttons > button"));
 digitButtons.forEach( (btn) => {
     btn.addEventListener("click", () => {
-        display.textContent += String(btn.textContent);
+        tempString += btn.textContent;
+        displayString += btn.textContent;
+        display.textContent = displayString;
+        console.log(num1, operator, num2);
     });
 });
 
 let addButton = document.querySelector(".addBtn");
 addButton.addEventListener("click", () => {
-    if (!operator)
+    if (num1 && num2)
     {
-        operator = "+";
-        if(!num1)
-        {
-            num1 = Number(display.textContent);
-        }
-        else
-        {
-            num1 = result;
-        }
-        display.textContent = String(num1) + (" " + operator + " ");
+        num1 = result;
+        result = undefined;
+        num2 = undefined;
     }
+    else if (!num1 && !num2)
+    {
+        num1 = Number(tempString);
+    }
+    else
+    {
+        num2 = Number(tempString);
+        num1 = operate(operator, num1, num2);
+        num2 = undefined;
+    }
+    tempString = '';
+
+    operator = "+";
+    displayString += (" " + operator + " ");
+    display.textContent = displayString;
+    console.log(num1, operator, num2);
+
 
 });
 
 let subtractButton = document.querySelector(".subBtn");
 subtractButton.addEventListener("click", () => {
-    if (!operator)
+    if (num1 && num2)
     {
-        operator = "-";
-        if(!num1)
-        {
-            num1 = Number(display.textContent);
-        }
-        else
-        {
-            num1 = result;
-        }
-        display.textContent = String(num1) + (" " + operator + " ");
+        num1 = result;
+        result = undefined;
+        num2 = undefined;
     }
+    else if (!num1 && !num2)
+    {
+        num1 = Number(tempString);
+    }
+    else
+    {
+        num2 = Number(tempString);
+        num1 = operate(operator, num1, num2);
+        num2 = undefined;
+    }
+    tempString = '';
+
+    operator = "-";
+    displayString += (" " + operator + " ");
+    display.textContent = displayString;
+    console.log(num1, operator, num2);
+
+
 });
 
 let multiplyButton = document.querySelector(".mulBtn");
 multiplyButton.addEventListener("click", () => {
-    if (!operator)
+    if (num1 && num2)
     {
-        operator = "*";
-        if(!num1)
-        {
-            num1 = Number(display.textContent);
-        }
-        else
-        {
-            num1 = result;
-        }
-        display.textContent = String(num1) + (" " + operator + " ");
+        num1 = result;
+        result = undefined;
+        num2 = undefined;
     }
+    else if (!num1 && !num2)
+    {
+        num1 = Number(tempString);
+    }
+    else
+    {
+        num2 = Number(tempString);
+        num1 = operate(operator, num1, num2);
+        num2 = undefined;
+    }
+
+    tempString = '';
+
+    operator = "*";
+    displayString += (" " + operator + " ");
+    display.textContent = displayString;
+    console.log(num1, operator, num2);
+
 });
 
 let divideButton = document.querySelector(".divBtn");
 divideButton.addEventListener("click", () => {
-    if (!operator)
+    if (num1 && num2)
     {
-        operator = "/";
-        if(!num1)
-        {
-            num1 = Number(display.textContent);
-        }
-        else
-        {
-            num1 = result;
-        }
-        display.textContent = String(num1) + (" " + operator + " ");
+        num1 = result;
+        result = undefined;
+        num2 = undefined;
     }
+    else if (!num1 && !num2)
+    {
+        num1 = Number(tempString);
+    }
+    else
+    {
+        num2 = Number(tempString);
+        num1 = operate(operator, num1, num2);
+        num2 = undefined;
+    }
+    tempString = '';
+
+    operator = "/";
+    displayString += (" " + operator + " ");
+    display.textContent = displayString;
+    console.log(num1, operator, num2);
+
 });
 
 let equalsButton = document.querySelector(".equBtn");
 equalsButton.addEventListener("click", () => {
-    num2 = Number(display.textContent.match(/\d+/g)[1]);
+    num2 = Number(tempString);
+    tempString = '';
+    result = operate(operator, num1, num2);
+    displayString = String(result);
+    display.textContent = displayString;
     console.log(num1, operator, num2);
-    if (num2)
-    {
-        result = operate(operator, num1, num2);
-        display.textContent = String(result);
-    }
+
 });
 
 let clearButton = document.querySelector(".clear");
@@ -143,5 +188,9 @@ clearButton.addEventListener("click", () => {
     num2 = undefined;
     result = undefined;
     operator = undefined;
-    display.textContent = '';
+    displayString = '';
+    tempString = '';
+    display.textContent = displayString;
+    console.log(num1, operator, num2);
+
 });
