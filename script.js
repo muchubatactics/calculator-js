@@ -5,7 +5,7 @@
 
 //global variables
 
-let num1 = undefined, num2 = undefined, result = undefined, count = undefined, operator = undefined, tempString = '', minorDisplayString = '';
+let num1 = undefined, num2 = undefined, result = undefined, operator = undefined, tempString = '', minorDisplayString = '';
 let justPressedEquals = false;
 
 //functions
@@ -69,13 +69,19 @@ function mathOpButtonCode(op)
     }
     else if (!num1 && !num2)
     {
-        num1 = Number(tempString);
+        if (processTempString(tempString) != 0)
+        {
+            num1 = Number(tempString);
+        }
     }
     else
     {
-        num2 = Number(tempString);
-        num1 = operate(operator, num1, num2);
-        num2 = undefined;
+        if (processTempString(tempString) != 0)
+        {
+            num2 = Number(tempString);
+            num1 = operate(operator, num1, num2);
+            num2 = undefined;
+        }
     }
     tempString = '';
     tempString = processTempString(tempString);
@@ -85,6 +91,7 @@ function mathOpButtonCode(op)
     display.textContent = tempString;
     minorDisplay.textContent = minorDisplayString;
 }
+
 //buttons
 
 let display = document.querySelector(".display");
