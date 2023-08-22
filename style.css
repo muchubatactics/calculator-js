@@ -10,16 +10,17 @@ body {
 
 .container {
     border: 2px solid black;
-    height: 500px;
-    width: 500px;
+    height: 700px;
+    width: 600px;
     border-radius: 5px;
+    padding: 10px;
 }
 
 .display-container {
     margin: 5px;
     border: 2px solid black;
     border-radius: 5px;
-    height: 90px;
+    height: 120px;
     text-align: end;
     padding: 2px 15px;
     font-size: xx-large;
@@ -36,4 +37,32 @@ body {
     text-align: end;
     padding: 2px 15px;
     font-size: xx-large;
+}
+
+.all-buttons {
+    display: flex;
+}
+
+.digit-buttons {
+    width: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;  
+}
+
+.digit-buttons > button{
+    min-height: 80px;
+    min-width: 100px;
+    margin: 10px;
+}
+
+.utility-buttons {
+    display: flex;
+    flex-direction: column;
+}
+
+.utility-buttons > button{
+    min-height: 50px;
+    min-width: 200px;
+    margin: 10px;
 }
