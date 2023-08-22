@@ -61,13 +61,13 @@ function processTempString(str)
 function mathOpButtonCode(op)
 {
     justPressedEquals = false;
-    if (num1 && num2)
+    if (num1 != undefined && num2 != undefined)
     {
         num1 = Number(tempString);
         result = undefined;
         num2 = undefined;
     }
-    else if (!num1 && !num2)
+    else if (num1 == undefined && num2 == undefined)
     {
         if (processTempString(tempString) != 0)
         {
@@ -134,7 +134,7 @@ divideButton.addEventListener("click", () => {
 
 let equalsButton = document.querySelector(".equBtn");
 equalsButton.addEventListener("click", () => {
-    if (num1 && tempString && operator)
+    if (num1 != undefined && tempString && operator)
     {
         num2 = Number(tempString);
         result = operate(operator, num1, num2);
