@@ -5,7 +5,8 @@
 
 //global variables
 
-let num1 = undefined, num2 = undefined, result = undefined, count = undefined, operator = undefined, tempString = '', displayString = '', minorDisplayString = '';
+let num1 = undefined, num2 = undefined, result = undefined, count = undefined, operator = undefined, tempString = '', minorDisplayString = '';
+let justPressedEquals = false;
 
 //functions
 
@@ -26,7 +27,11 @@ function multiply(x, y)
 
 function divide(x, y)
 {
-    if (y == 0) return 0;
+    if (y == 0)
+    {
+        prompt("come on man, don't divide by 0 :)");
+        return undefined;
+    }
     return x / y;
 }
 
@@ -48,165 +53,132 @@ function operate(operator, x, y)
     }
 }
 
+function processTempString(str)
+{
+    return String(Number(str));
+}
+
+function mathOpButtonCode(op)
+{
+    justPressedEquals = false;
+    if (num1 && num2)
+    {
+        num1 = Number(tempString);
+        result = undefined;
+        num2 = undefined;
+    }
+    else if (!num1 && !num2)
+    {
+        num1 = Number(tempString);
+    }
+    else
+    {
+        num2 = Number(tempString);
+        num1 = operate(operator, num1, num2);
+        num2 = undefined;
+    }
+    tempString = '';
+    tempString = processTempString(tempString);
+
+    operator = op;
+    minorDisplayString = String(num1) +  (" " + operator + " ");
+    display.textContent = tempString;
+    minorDisplay.textContent = minorDisplayString;
+}
+//buttons
+
 let display = document.querySelector(".display");
+display.textContent = processTempString(tempString);
 let minorDisplay = document.querySelector(".minor-display");
 
 let digitButtons = Array.from(document.querySelectorAll(".digit-buttons > button"));
 digitButtons.forEach( (btn) => {
     btn.addEventListener("click", () => {
+        if (justPressedEquals) 
+        {
+            tempString = '';
+            justPressedEquals = false;
+        }
         tempString += btn.textContent;
-        displayString += btn.textContent;
-        display.textContent = displayString;
-        console.log(num1, operator, num2);
+        tempString = processTempString(tempString);
+        display.textContent = tempString;
     });
 });
 
 let addButton = document.querySelector(".addBtn");
 addButton.addEventListener("click", () => {
-    if (num1 && num2)
-    {
-        num1 = result;
-        result = undefined;
-        num2 = undefined;
-    }
-    else if (!num1 && !num2)
-    {
-        num1 = Number(tempString);
-    }
-    else
-    {
-        num2 = Number(tempString);
-        num1 = operate(operator, num1, num2);
-        num2 = undefined;
-    }
-    tempString = '';
-
-    operator = "+";
-    minorDisplayString = String(num1) +  (" " + operator + " ");
-    console.log(minorDisplayString);
-    displayString = '';
-    display.textContent = displayString;
-    minorDisplay.textContent = minorDisplayString;
-    console.log(num1, operator, num2);
-
-
+    mathOpButtonCode("+");
 });
 
 let subtractButton = document.querySelector(".subBtn");
 subtractButton.addEventListener("click", () => {
-    if (num1 && num2)
-    {
-        num1 = result;
-        result = undefined;
-        num2 = undefined;
-    }
-    else if (!num1 && !num2)
-    {
-        num1 = Number(tempString);
-    }
-    else
-    {
-        num2 = Number(tempString);
-        num1 = operate(operator, num1, num2);
-        num2 = undefined;
-    }
-    tempString = '';
-
-    operator = "-";
-    minorDisplayString = String(num1) +  (" " + operator + " ");
-    console.log(minorDisplayString);
-    displayString = '';
-    display.textContent = displayString;
-    minorDisplay.textContent = minorDisplayString;
-    console.log(num1, operator, num2);
-
+    mathOpButtonCode("-");
 });
 
 let multiplyButton = document.querySelector(".mulBtn");
 multiplyButton.addEventListener("click", () => {
-    if (num1 && num2)
-    {
-        num1 = result;
-        result = undefined;
-        num2 = undefined;
-    }
-    else if (!num1 && !num2)
-    {
-        num1 = Number(tempString);
-    }
-    else
-    {
-        num2 = Number(tempString);
-        num1 = operate(operator, num1, num2);
-        num2 = undefined;
-    }
-    tempString = '';
-
-    operator = "*";
-    minorDisplayString = String(num1) +  (" " + operator + " ");
-    console.log(minorDisplayString);
-    displayString = '';
-    display.textContent = displayString;
-    minorDisplay.textContent = minorDisplayString;
-    console.log(num1, operator, num2);
-
-
+    mathOpButtonCode("*");
 });
 
 let divideButton = document.querySelector(".divBtn");
 divideButton.addEventListener("click", () => {
-    if (num1 && num2)
-    {
-        num1 = result;
-        result = undefined;
-        num2 = undefined;
-    }
-    else if (!num1 && !num2)
-    {
-        num1 = Number(tempString);
-    }
-    else
-    {
-        num2 = Number(tempString);
-        num1 = operate(operator, num1, num2);
-        num2 = undefined;
-    }
-    tempString = '';
-
-    operator = "/";
-    minorDisplayString = String(num1) +  (" " + operator + " ");
-    console.log(minorDisplayString);
-    displayString = '';
-    display.textContent = displayString;
-    minorDisplay.textContent = minorDisplayString;
-    console.log(num1, operator, num2);
-
-
+    mathOpButtonCode("/");
 });
 
 let equalsButton = document.querySelector(".equBtn");
 equalsButton.addEventListener("click", () => {
-    num2 = Number(tempString);
-    tempString = '';
-    result = operate(operator, num1, num2);
-    minorDisplay.textContent = String(num1) + " " + operator + " " + String(num2) + " =";
-    displayString = String(result);
-    display.textContent = displayString;
-    console.log(num1, operator, num2);
-
+    if (num1 && tempString && operator)
+    {
+        num2 = Number(tempString);
+        result = operate(operator, num1, num2);
+        if (result == undefined)
+        {
+            num2 = undefined; 
+            return;
+        }
+        result = Math.round(result*10000) / 10000;
+        minorDisplay.textContent = String(num1) + " " + operator + " " + String(num2) + " =";
+        tempString = String(result);
+        display.textContent = tempString;
+        operator = undefined;
+        justPressedEquals = true;
+    }
 });
 
 let clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", () => {
+    justPressedEquals = false;
     num1 = undefined;
     num2 = undefined;
     result = undefined;
     operator = undefined;
-    displayString = '';
     tempString = '';
-    display.textContent = displayString;
+    tempString = processTempString(tempString);
+    display.textContent = tempString;
     minorDisplayString = '';
     minorDisplay.textContent = minorDisplayString;
-    console.log(num1, operator, num2);
+});
 
+let pointButton = document.querySelector(".point");
+pointButton.addEventListener("click", () => {
+    justPressedEquals = false;
+    if (tempString && !tempString.includes("."))
+    {
+        tempString += ".";
+        display.textContent = tempString;
+    }
+});
+
+let deleteButton = document.querySelector(".delete");
+deleteButton.addEventListener("click", () => {
+    justPressedEquals = false;
+    if (!tempString || tempString.length == 1)
+    {
+        tempString = "0";
+    }
+    else
+    {
+        tempString = tempString.slice(0, -1);
+    }
+    display.textContent = tempString;
 });
