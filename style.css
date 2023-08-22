@@ -15,10 +15,23 @@ body {
     border-radius: 5px;
 }
 
-.display {
+.display-container {
     margin: 5px;
     border: 2px solid black;
     border-radius: 5px;
+    height: 90px;
+    text-align: end;
+    padding: 2px 15px;
+    font-size: xx-large;
+}
+
+.minor-display {
+    height: 30px;
+    text-align: end;
+    padding: 2px 15px;
+    font-size: large;
+}
+.display {
     height: 50px;
     text-align: end;
     padding: 2px 15px;

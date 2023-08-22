@@ -5,7 +5,7 @@
 
 //global variables
 
-let num1 = undefined, num2 = undefined, result = undefined, count = undefined, operator = undefined, tempString = '', displayString = '';
+let num1 = undefined, num2 = undefined, result = undefined, count = undefined, operator = undefined, tempString = '', displayString = '', minorDisplayString = '';
 
 //functions
 
@@ -49,6 +49,7 @@ function operate(operator, x, y)
 }
 
 let display = document.querySelector(".display");
+let minorDisplay = document.querySelector(".minor-display");
 
 let digitButtons = Array.from(document.querySelectorAll(".digit-buttons > button"));
 digitButtons.forEach( (btn) => {
@@ -81,8 +82,11 @@ addButton.addEventListener("click", () => {
     tempString = '';
 
     operator = "+";
-    displayString += (" " + operator + " ");
+    minorDisplayString = String(num1) +  (" " + operator + " ");
+    console.log(minorDisplayString);
+    displayString = '';
     display.textContent = displayString;
+    minorDisplay.textContent = minorDisplayString;
     console.log(num1, operator, num2);
 
 
@@ -109,10 +113,12 @@ subtractButton.addEventListener("click", () => {
     tempString = '';
 
     operator = "-";
-    displayString += (" " + operator + " ");
+    minorDisplayString = String(num1) +  (" " + operator + " ");
+    console.log(minorDisplayString);
+    displayString = '';
     display.textContent = displayString;
+    minorDisplay.textContent = minorDisplayString;
     console.log(num1, operator, num2);
-
 
 });
 
@@ -134,13 +140,16 @@ multiplyButton.addEventListener("click", () => {
         num1 = operate(operator, num1, num2);
         num2 = undefined;
     }
-
     tempString = '';
 
     operator = "*";
-    displayString += (" " + operator + " ");
+    minorDisplayString = String(num1) +  (" " + operator + " ");
+    console.log(minorDisplayString);
+    displayString = '';
     display.textContent = displayString;
+    minorDisplay.textContent = minorDisplayString;
     console.log(num1, operator, num2);
+
 
 });
 
@@ -165,9 +174,13 @@ divideButton.addEventListener("click", () => {
     tempString = '';
 
     operator = "/";
-    displayString += (" " + operator + " ");
+    minorDisplayString = String(num1) +  (" " + operator + " ");
+    console.log(minorDisplayString);
+    displayString = '';
     display.textContent = displayString;
+    minorDisplay.textContent = minorDisplayString;
     console.log(num1, operator, num2);
+
 
 });
 
@@ -176,6 +189,7 @@ equalsButton.addEventListener("click", () => {
     num2 = Number(tempString);
     tempString = '';
     result = operate(operator, num1, num2);
+    minorDisplay.textContent = String(num1) + " " + operator + " " + String(num2) + " =";
     displayString = String(result);
     display.textContent = displayString;
     console.log(num1, operator, num2);
@@ -191,6 +205,8 @@ clearButton.addEventListener("click", () => {
     displayString = '';
     tempString = '';
     display.textContent = displayString;
+    minorDisplayString = '';
+    minorDisplay.textContent = minorDisplayString;
     console.log(num1, operator, num2);
 
 });
