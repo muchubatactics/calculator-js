@@ -1,3 +1,7 @@
+
+@import url('https://fonts.googleapis.com/css2?family=Poppins&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Inter&display=swap');
+
 body {
     display: flex;
     height: 100vh;
@@ -6,37 +10,51 @@ body {
     align-items: center;
     padding: 0%;
     margin: 0%;
+    background-color: rgb(36, 36, 36);
 }
 
 .container {
-    border: 2px solid black;
+    /* border: 2px solid black; */
     height: 700px;
     width: 600px;
     border-radius: 5px;
     padding: 10px;
+    margin: 50px;
+    background-color: rgb(119, 119, 119);
 }
 
 .display-container {
     margin: 5px;
-    border: 2px solid black;
+    /* border: 2px solid black; */
     border-radius: 5px;
     height: 120px;
     text-align: end;
     padding: 2px 15px;
     font-size: xx-large;
+    margin-bottom: 40px;
+    font-family: 'Poppins';
+    color: white;
+    background-color: rgb(146, 146, 146);
 }
 
 .minor-display {
-    height: 30px;
+    height: 45px;
     text-align: end;
     padding: 2px 15px;
-    font-size: large;
+    font-size:35px;
+    display: flex;
+    justify-content: end;
+    align-items: center;
+    font-family: 'Poppins';
 }
 .display {
-    height: 50px;
+    height: 65px;
     text-align: end;
     padding: 2px 15px;
-    font-size: xx-large;
+    font-size: 60px;
+    display: flex;
+    align-items: center;
+    justify-content: end;
 }
 
 .all-buttons {
@@ -53,7 +71,13 @@ body {
 .digit-buttons > button{
     min-height: 80px;
     min-width: 100px;
-    margin: 10px;
+    margin: 40px 10px;
+    margin-top: 0px;
+    font-family: 'Inter', sans-serif;
+    font-size: 30px;
+    border: 0px;
+    color: white;
+    background-color: rgb(92, 92, 92);
 }
 
 .utility-buttons {
@@ -64,5 +88,25 @@ body {
 .utility-buttons > button{
     min-height: 50px;
     min-width: 200px;
-    margin: 10px;
+    margin: 15px 10px;
+    margin-top: 0px;
+    font-family: 'Inter', sans-serif;
+    font-size: 25px;
+    border: 0px;
+    color: white;
+    background-color: rgb(83, 83, 83);
+}
+
+.footer {
+    margin-top: auto;
+    font-family: 'Poppins', sans-serif;
+    font-size: 25px;
+    height: 100px;
+    width: 100%;
+    color: white;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    background-color: rgb(75, 75, 75);
 }

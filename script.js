@@ -92,6 +92,17 @@ function mathOpButtonCode(op)
     minorDisplay.textContent = minorDisplayString;
 }
 
+function hoverAction(button)
+{
+    button.addEventListener("mouseover", () => {
+        button.style.backgroundColor = "rgb(60, 60, 60)";
+    });
+
+    button.addEventListener("mouseout", () => {
+        button.style.backgroundColor = "rgb(83, 83, 83)";
+    });
+}
+
 //buttons
 
 let display = document.querySelector(".display");
@@ -110,27 +121,40 @@ digitButtons.forEach( (btn) => {
         tempString = processTempString(tempString);
         display.textContent = tempString;
     });
+    
+    btn.addEventListener("mouseover", () => {
+        btn.style.backgroundColor = "rgb(70, 70, 70)";
+    });
+
+    btn.addEventListener("mouseout", () => {
+        btn.style.backgroundColor = "rgb(92, 92, 92)";
+    });
+
 });
 
 let addButton = document.querySelector(".addBtn");
 addButton.addEventListener("click", () => {
     mathOpButtonCode("+");
 });
+hoverAction(addButton);
 
 let subtractButton = document.querySelector(".subBtn");
 subtractButton.addEventListener("click", () => {
     mathOpButtonCode("-");
 });
+hoverAction(subtractButton);
 
 let multiplyButton = document.querySelector(".mulBtn");
 multiplyButton.addEventListener("click", () => {
     mathOpButtonCode("*");
 });
+hoverAction(multiplyButton);
 
 let divideButton = document.querySelector(".divBtn");
 divideButton.addEventListener("click", () => {
     mathOpButtonCode("/");
 });
+hoverAction(divideButton);
 
 let equalsButton = document.querySelector(".equBtn");
 equalsButton.addEventListener("click", () => {
@@ -151,6 +175,7 @@ equalsButton.addEventListener("click", () => {
         justPressedEquals = true;
     }
 });
+hoverAction(equalsButton);
 
 let clearButton = document.querySelector(".clear");
 clearButton.addEventListener("click", () => {
@@ -165,6 +190,13 @@ clearButton.addEventListener("click", () => {
     minorDisplayString = '';
     minorDisplay.textContent = minorDisplayString;
 });
+clearButton.addEventListener("mouseover", () => {
+    clearButton.style.backgroundColor = "rgb(75, 1, 1)";
+});
+
+clearButton.addEventListener("mouseout", () => {
+    clearButton.style.backgroundColor = "rgb(83, 83, 83)";
+});
 
 let pointButton = document.querySelector(".point");
 pointButton.addEventListener("click", () => {
@@ -175,6 +207,7 @@ pointButton.addEventListener("click", () => {
         display.textContent = tempString;
     }
 });
+hoverAction(pointButton);
 
 let deleteButton = document.querySelector(".delete");
 deleteButton.addEventListener("click", () => {
@@ -188,4 +221,11 @@ deleteButton.addEventListener("click", () => {
         tempString = tempString.slice(0, -1);
     }
     display.textContent = tempString;
+});
+deleteButton.addEventListener("mouseover", () => {
+    deleteButton.style.backgroundColor = "rgb(1, 2, 75)";
+});
+
+deleteButton.addEventListener("mouseout", () => {
+    deleteButton.style.backgroundColor = "rgb(83, 83, 83)";
 });
