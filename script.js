@@ -5,7 +5,7 @@
 
 //global variables
 
-let num1 = undefined, num2 = undefined, result = undefined, operator = undefined, tempString = '', minorDisplayString = '';
+let num1 = undefined, num2 = undefined, result = undefined, operator = undefined, tempString = '0', minorDisplayString = '';
 let justPressedEquals = false;
 
 //functions
@@ -83,13 +83,16 @@ function mathOpButtonCode(op)
             num2 = undefined;
         }
     }
-    tempString = '';
-    tempString = processTempString(tempString);
-
-    operator = op;
-    minorDisplayString = String(num1) +  (" " + operator + " ");
-    display.textContent = tempString;
-    minorDisplay.textContent = minorDisplayString;
+    if (num1 != undefined)
+    {
+        tempString = '';
+        tempString = processTempString(tempString);
+    
+        operator = op;
+        minorDisplayString = String(num1) +  (" " + operator + " ");
+        display.textContent = tempString;
+        minorDisplay.textContent = minorDisplayString;
+    }
 }
 
 function hoverAction(button)
