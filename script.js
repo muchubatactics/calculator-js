@@ -204,7 +204,7 @@ clearButton.addEventListener("mouseout", () => {
 let pointButton = document.querySelector(".point");
 pointButton.addEventListener("click", () => {
     justPressedEquals = false;
-    if (tempString && !tempString.includes("."))
+    if (!tempString.includes("."))
     {
         tempString += ".";
         display.textContent = tempString;
