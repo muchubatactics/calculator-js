@@ -5,7 +5,7 @@
 
 //global variables
 
-let num1 = undefined, num2 = undefined, result = undefined, operator = undefined, tempString = '0', minorDisplayString = '';
+let num1 = undefined, num2 = undefined, result = undefined, operator = undefined, tempString = '', minorDisplayString = '';
 let justPressedEquals = false;
 
 //functions
@@ -121,7 +121,7 @@ digitButtons.forEach( (btn) => {
             justPressedEquals = false;
         }
         tempString += btn.textContent;
-        tempString = processTempString(tempString);
+        // tempString = processTempString(tempString);
         display.textContent = tempString;
     });
     
@@ -188,8 +188,8 @@ clearButton.addEventListener("click", () => {
     result = undefined;
     operator = undefined;
     tempString = '';
-    tempString = processTempString(tempString);
-    display.textContent = tempString;
+    // tempString = processTempString(tempString);
+    display.textContent = '0';
     minorDisplayString = '';
     minorDisplay.textContent = minorDisplayString;
 });
