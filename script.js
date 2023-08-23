@@ -86,11 +86,11 @@ function mathOpButtonCode(op)
     if (num1 != undefined)
     {
         tempString = '';
-        tempString = processTempString(tempString);
+        // tempString = processTempString(tempString);
     
         operator = op;
         minorDisplayString = String(num1) +  (" " + operator + " ");
-        display.textContent = tempString;
+        display.textContent = '0';
         minorDisplay.textContent = minorDisplayString;
     }
 }
